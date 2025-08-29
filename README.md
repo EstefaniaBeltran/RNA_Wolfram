@@ -1,7 +1,6 @@
 Yeimy Estefania Beltran Sandoval
 #                                                                   RNA con Wolfram
 
-# Objetivo
 Implementar perceptrones simples para simular el funcionamiento de las compuertas lógicas AND, OR y XOR, utilizando una función de activación escalón.+
 
 # ¿Qué es una RNA?
