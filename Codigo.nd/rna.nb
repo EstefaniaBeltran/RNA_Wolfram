@@ -1,0 +1,51 @@
+(* Función de activación escalón    *)
+FuncionEscalon[x_] := If[x > 0, 1, 0]
+
+(* Perceptrón para compuerta AND    *)
+PerceptronAND[in1_, in2_] := Module[
+  {pesos, sesgo, suma},
+  
+  pesos = {1, 1};      (* Pesos *)
+  sesgo = -1.5;        (* Sesgo *)
+  
+  suma = pesos.{in1, in2} + sesgo;
+  FuncionEscalon[suma]
+]
+(* Perceptrón para compuerta OR     *)
+PerceptronOR[in1_, in2_] := Module[
+  {pesos, sesgo, suma},
+  
+  pesos = {1, 1};      (* Pesos *)
+  sesgo = -0.5;        (* Sesgo *)
+  
+  suma = pesos.{in1, in2} + sesgo;
+  FuncionEscalon[suma]
+]
+(* Perceptrón XOR usando AND, OR y NAND *)
+PerceptronXOR[in1_, in2_] := Module[
+  {salidaNAND, salidaOR, salidaFinal},
+  
+  (* Primera capa: NAND y OR *)
+  salidaNAND = 1 - PerceptronAND[in1, in2];   (* NAND = NOT(AND) *)
+  salidaOR   = PerceptronOR[in1, in2];
+  
+  (* Segunda capa: AND de NAND y OR *)
+  salidaFinal = PerceptronAND[salidaNAND, salidaOR];
+  
+  salidaFinal
+]
+
+(* Probar compuerta AND *)
+entradasAND = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+salidasAND  = PerceptronAND @@@ entradasAND;
+Print["Resultados AND: ", Thread[entradasAND -> salidasAND]];
+
+(* Probar compuerta OR *)
+entradasOR = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+salidasOR  = PerceptronOR @@@ entradasOR;
+Print["Resultados OR: ", Thread[entradasOR -> salidasOR]];
+
+(* Probar compuerta XOR *)
+entradasXOR = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+salidasXOR  = PerceptronXOR @@@ entradasXOR;
+Print["Resultados XOR: ", Thread[entradasXOR -> salidasXOR]];
