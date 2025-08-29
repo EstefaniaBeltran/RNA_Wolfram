@@ -74,17 +74,17 @@ El código implementa perceptrones para simular compuertas lógicas. Cada percep
    
    perceptronXOR[input1_, input2_] := Module[
    
-    {nandOutput, orOutput, finalOutput},
+     {nandOutput, orOutput, finalOutput},
    
-    nandOutput = 1 - perceptronAND[input1, input2];
+     nandOutput = 1 - perceptronAND[input1, input2];
    
-    orOutput = perceptronOR[input1, input2];
+     orOutput = perceptronOR[input1, input2];
    
-    finalOutput = perceptronAND[nandOutput, orOutput];
+     finalOutput = perceptronAND[nandOutput, orOutput];
    
-    finalOutput
+     finalOutput
    
-  ]    
+   ]    
 
  - XOR no puede resolverse con un único perceptrón, así que se usa una combinación:
 
@@ -109,4 +109,3 @@ Para todas las combinaciones de entradas:
 - Un perceptrón simula el comportamiento de compuertas lógicas básicas como AND y OR ajustando pesos y sesgos.
 - La compuerta XOR no puede resolverse con un único perceptrón; se requiere más de una capa.
 - Esto demuestra que las Redes Neuronales Artificiales (RNAs) pueden resolver problemas complejos combinando perceptrones simples.
-- Comprender estos ejemplos básicos es esencial para entender cómo las RNAs modernas aprenden patrones más complicados.
