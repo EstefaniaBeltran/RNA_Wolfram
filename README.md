@@ -23,7 +23,9 @@ Para XOR, usamos más de una capa, lo que es el principio básico de una RNA mul
 El código implementa perceptrones para simular compuertas lógicas. Cada perceptrón recibe dos entradas binarias (0 o 1) y, en función de los pesos y el sesgo definidos, determina si la salida es 0 o 1.
 
 1. Función de activación
+   
    stepFunction[x_] := If[x > 0, 1, 0]
+   
    Es la función escalón:
 
     - Si la suma ponderada es mayor que 0, devuelve 1.
@@ -31,36 +33,57 @@ El código implementa perceptrones para simular compuertas lógicas. Cada percep
     - Si es menor o igual que 0, devuelve 0.
   
 2. Perceptrón AND
+   
    perceptronAND[input1_, input2_] := Module[
+   
     {weights, bias, weightedSum},
+   
     weights = {1, 1};
+   
     bias = -1.5;
+   
     weightedSum = weights.{input1, input2} + bias;
+   
     stepFunction[weightedSum]
+   
    ]
 
    - Pesos: {1, 1} → cada entrada suma 1.
    - Sesgo: -1.5 → obliga a que ambas entradas sean 1 para activar la salida.
 
 3. Perceptrón OR
+   
    perceptronOR[input1_, input2_] := Module[
+   
     {weights, bias, weightedSum},
+   
     weights = {1, 1};
+   
     bias = -0.5;
+   
     weightedSum = weights.{input1, input2} + bias;
+   
     stepFunction[weightedSum]
+   
    ]
 
   - Pesos: {1, 1} → igual que en AND.
   - Sesgo: -0.5 → permite que basta con una entrada en 1 para que la salida sea 1.
     
 4. Perceptrón XOR
+   
    perceptronXOR[input1_, input2_] := Module[
+   
     {nandOutput, orOutput, finalOutput},
+   
     nandOutput = 1 - perceptronAND[input1, input2];
+   
     orOutput = perceptronOR[input1, input2];
+   
     finalOutput = perceptronAND[nandOutput, orOutput];
+   
     finalOutput
+   
   ]    
 
  - XOR no puede resolverse con un único perceptrón, así que se usa una combinación:
